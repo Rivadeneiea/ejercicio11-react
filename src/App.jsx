@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Noticia from "./components/Noticia";
 
 function App() {
   // paso 4 DEBO CREAR UN ESTADO PARA GUARDAR LOS DATOS DE LA
@@ -40,9 +42,9 @@ function App() {
 
   return (
     <>
-      <div>
-        <h1></h1>
-      </div>
+      <section>
+        <Noticia />
+      </section>
     </>
   );
 }
