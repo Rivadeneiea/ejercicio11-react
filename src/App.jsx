@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Noticia from "./components/Noticia";
+import NoticiaTarjeta from "./components/NoticiaTarjeta";
+import Form from "react-bootstrap/Form";
 
 function App() {
   // paso 4 DEBO CREAR UN ESTADO PARA GUARDAR LOS DATOS DE LA
   // RESPUESTA DE LA API
   const [noticias, setNoticias] = useState([]);
+  const [categoria, setCategoria] = useState("top");
   // este useEffect se lo usa por dos razones
   // la primera es para consultar la funcion
   // consultarApi y la segunda al estar en
   // desarrollocontrolas el montaje de la aplicacion
   useEffect(() => {
     consultarApi();
-  }, []);
+  }, [categoria]);
   // hook: significa gancho y lo que hace es enganchar de
   // herramienta de react a un componente
 
@@ -32,7 +34,7 @@ function App() {
     // respuesta y el await es la espera de esa respuesta
     try {
       const respuesta = await fetch(
-        "https://newsdata.io/api/1/news?apikey=pub_26815e3379be8009c57f199f4a5743ab2d2bb&q=pizza"
+        `https://newsdata.io/api/1/news?apikey=pub_26815e3379be8009c57f199f4a5743ab2d2bb&category=${categoria}`
       );
       const dato = await respuesta.json();
       setNoticias(dato.results);
@@ -40,10 +42,24 @@ function App() {
     } catch (error) {}
   };
 
+  const selector = (e) => {
+    setCategoria(e.target.value);
+  };
+
   return (
     <>
       <section>
-        <Noticia />
+        <Form.Select aria-label="Default select example" onChange={selector}>
+          <option>Open this select menu</option>
+          <option value="top">top</option>
+          <option value="entertainment">entertainment</option>
+          <option value="world">world</option>
+        </Form.Select>
+      </section>
+      <section>
+        {noticias.map((noticia) => (
+          <NoticiaTarjeta noticia={noticia} />
+        ))}
       </section>
     </>
   );
