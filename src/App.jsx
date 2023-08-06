@@ -3,6 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NoticiaTarjeta from "./components/NoticiaTarjeta";
 import Form from "react-bootstrap/Form";
+import Footer from "./components/Footer";
 
 function App() {
   // paso 4 DEBO CREAR UN ESTADO PARA GUARDAR LOS DATOS DE LA
@@ -48,8 +49,13 @@ function App() {
 
   return (
     <>
+      <h1 className="container text-center text-danger">News of the world</h1>
       <section>
-        <Form.Select aria-label="Default select example" onChange={selector}>
+        <Form.Select
+          className="container"
+          aria-label="Default select example"
+          onChange={selector}
+        >
           <option>Open this select menu</option>
           <option value="top">top</option>
           <option value="entertainment">entertainment</option>
@@ -61,6 +67,7 @@ function App() {
           <NoticiaTarjeta noticia={noticia} />
         ))}
       </section>
+      <Footer />
     </>
   );
 }
