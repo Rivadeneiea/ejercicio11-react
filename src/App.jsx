@@ -52,7 +52,7 @@ function App() {
       <h1 className="container text-center text-danger">News of the world</h1>
       <section>
         <Form.Select
-          className="container"
+          className="container "
           aria-label="Default select example"
           onChange={selector}
         >
@@ -62,7 +62,7 @@ function App() {
           <option value="world">world</option>
         </Form.Select>
       </section>
-      <section>
+      <section className="container d-flex flex-wrap">
         {noticias.map((noticia) => (
           <NoticiaTarjeta noticia={noticia} />
         ))}
